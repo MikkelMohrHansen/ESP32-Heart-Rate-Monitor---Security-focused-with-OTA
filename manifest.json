@@ -1,0 +1,9 @@
+{
+    "version": "1.0.0",
+    "files": [
+        {"name": "main.py",        "sha256": "INDSÆT_SHA256_HER"},
+        {"name": "heartrate.py",   "sha256": "INDSÆT_SHA256_HER"},
+        {"name": "wifi_manager.py","sha256": "INDSÆT_SHA256_HER"},
+        {"name": "ota.py",         "sha256": "INDSÆT_SHA256_HER"}
+    ]
+}
