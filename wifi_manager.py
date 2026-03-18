@@ -383,6 +383,9 @@ canvas{{width:100%;background:#16213e;border-radius:8px;display:block}}
 .st{{text-align:center;color:#aaa;font-size:.85rem;margin-top:1rem}}
 a{{color:#e94560}}
 nav{{text-align:center;margin-top:1.5rem;font-size:.9rem}}
+.hist{{margin-top:1rem;padding-top:1rem;border-top:1px solid #444}}
+.btn{{display:inline-block;padding:.5rem 1rem;margin:.3rem;background:#0f3460;color:#e94560;
+      border:1px solid #e94560;border-radius:6px;cursor:pointer;text-decoration:none;font-size:.85rem}}
 </style></head><body>
 <h2><span class="ht">&#10084;&#65039;</span> {n}</h2>
 <div class="bx">
@@ -391,6 +394,12 @@ nav{{text-align:center;margin-top:1.5rem;font-size:.9rem}}
 </div>
 <canvas id="chart" height="120"></canvas>
 <p class="st" id="st">Henter data...</p>
+<div class="hist">
+<p style="text-align:center;color:#aaa;font-size:.75rem">
+  <a href="/api/history" class="btn" download>&#128190; Download historik</a>
+  <button class="btn" onclick="clearHist()">&#128465; Slet historik</button>
+</p>
+</div>
 <nav><a href="/wifi">&#9881;&#65039; Indstillinger</a> | <a href="/logout">Log ud</a></nav>
 <script>
 var MAX=60,pts=[];
@@ -426,6 +435,13 @@ async function fetchData(){{
 }}
 fetchData();setInterval(fetchData,2000);
 window.addEventListener("resize",draw);
+function clearHist(){{
+  if(confirm("Er du sikker? Dette sletter alt historikdata.")){{
+    fetch("/clear-history").then(function(r){{
+      if(r.ok){{alert("Historik slettet");location.reload();}}
+    }});
+  }}
+}}
 </script>
 </body></html>""".format(n=device_id)
 
@@ -747,6 +763,24 @@ class WiFiManager:
             hist = sensor.history_json() if sensor else "[]"
             _send(conn, "200 OK", "application/json",
                   '{{"bpm":{},"history":{}}}'.format(bpm, hist))
+
+        # GET /api/history - alle lesninger fra fil
+        elif path == "/api/history" and auth:
+            if sensor:
+                full_hist = sensor.get_full_history_json()
+            else:
+                full_hist = "[]"
+            _send(conn, "200 OK", "application/json", full_hist)
+
+        # GET /clear-history - slet al data
+        elif path == "/clear-history" and auth:
+            if sensor:
+                sensor.clear_history()
+                msg = "Historik slettet"
+            else:
+                msg = "Sensor ikke tilgængelig"
+            _send(conn, "200 OK", "application/json",
+                  '{{"status":"ok","message":"{}"}}'.format(msg))
 
         # GET /data
         elif path == "/data" and auth:
