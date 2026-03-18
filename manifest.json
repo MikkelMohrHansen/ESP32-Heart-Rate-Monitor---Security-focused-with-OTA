@@ -1,9 +1,21 @@
 {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "files": [
-        {"name": "main.py",        "sha256": "INDSÆT_SHA256_HER"},
-        {"name": "heartrate.py",   "sha256": "INDSÆT_SHA256_HER"},
-        {"name": "wifi_manager.py","sha256": "INDSÆT_SHA256_HER"},
-        {"name": "ota.py",         "sha256": "INDSÆT_SHA256_HER"}
+        {
+            "name": "main.py",
+            "sha256": "ffa977439af740686dbe29e13b4f836ecf02f07d4f6f2bbf78933921f0dd61b8"
+        },
+        {
+            "name": "heartrate.py",
+            "sha256": "38bd7c5f8ffe7eac09243eaa0ed178b7fee777f47454f12a0ac8db183a600321"
+        },
+        {
+            "name": "wifi_manager.py",
+            "sha256": "459247157005bce46ec2573fd4a9bb8817be192bb3e2a417a47c0662054d5403"
+        },
+        {
+            "name": "ota.py",
+            "sha256": "3818265b7b3c9e0635ae87dbef633aa770c12df37944d934cf62325f10c5d5cc"
+        }
     ]
 }
