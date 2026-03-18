@@ -7,11 +7,11 @@
         },
         {
             "name": "heartrate.py",
-            "sha256": "38bd7c5f8ffe7eac09243eaa0ed178b7fee777f47454f12a0ac8db183a600321"
+            "sha256": "6a36f50add35eb412c95094bfa2ab357f32ac37ce997ae98d308f81c8036ff54"
         },
         {
             "name": "wifi_manager.py",
-            "sha256": "459247157005bce46ec2573fd4a9bb8817be192bb3e2a417a47c0662054d5403"
+            "sha256": "7a2d82cce5ae91240a03526d8187b5585f8949fdcce500cff4d5199e14e21c88"
         },
         {
             "name": "ota.py",
